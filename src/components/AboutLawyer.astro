@@ -1,0 +1,42 @@
+---
+import { SITE, ABOUT_METRICS, WHATSAPP } from "../constants/site"
+import Icon from "./ui/Icon.astro"
+
+const { fullName, description } = SITE
+---
+
+<section id="sobre" class="w-full bg-bg">
+  <div class="mx-auto max-w-[1200px] flex items-center gap-10 px-10 py-12 max-md:flex-col max-md:px-5">
+    <div class="h-[382px] w-[387px] shrink-0 overflow-hidden rounded-xl border-2 border-accent-dark shadow-[0_8px_24px_-4px_rgba(0,0,0,0.7)] max-md:w-full max-md:h-auto max-md:aspect-[1/1]">
+      <img src="/imgs/Advogado com fundo.jpg" alt={fullName} class="h-full w-full object-cover" />
+    </div>
+
+    <div class="flex flex-col gap-3.5">
+      <div class="flex items-center gap-2">
+        <span class="block h-0.5 w-7 bg-accent-dark"></span>
+        <span class="font-body text-[13px] font-medium text-accent-dark tracking-[0.52px]">ESPECIALISTA EM DIREITO TRABALHISTA</span>
+      </div>
+
+      <h3 class="font-heading text-[30px] font-medium text-primary">{fullName}</h3>
+
+      <p class="font-body text-sm text-muted-dark leading-relaxed max-w-md">{description}</p>
+
+      <div class="flex gap-8 border-t border-b border-[#f0e8d0] py-4">
+        {ABOUT_METRICS.map((m) => (
+          <div class="flex flex-col gap-0.5">
+            <span class="font-body text-[22px] font-medium text-accent-dark">{m.value}</span>
+            <span class="font-body text-[11px] text-muted tracking-[0.44px]">{m.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href={WHATSAPP.url}
+        class="inline-flex w-fit items-center gap-2 rounded-lg bg-accent-dark px-[22px] py-[11px] transition-opacity hover:opacity-90"
+      >
+        <Icon name="calendar" size={16} class="text-primary" />
+        <span class="font-body text-sm font-medium text-primary">Agendar Consulta</span>
+      </a>
+    </div>
+  </div>
+</section>

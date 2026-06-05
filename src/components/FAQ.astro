@@ -1,0 +1,112 @@
+---
+import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
+---
+
+<section id="faq" class="w-full bg-bg">
+  <div class="mx-auto max-w-[1200px] flex flex-col items-center px-8 py-12">
+    <div class="flex w-full gap-8 items-end">
+      <div class="flex-1 flex flex-col">
+        <h3 class="font-heading text-[30px] font-medium text-primary leading-tight">Perguntas</h3>
+        <h3 class="font-heading text-[30px] font-medium text-accent-dark leading-tight">Frequentes</h3>
+      </div>
+    </div>
+
+    <div class="flex w-full flex-col" id="faq-accordion">
+      {FAQ_ITEMS.map((item, index) => (
+        <div
+          class={`faq-item ${index === 0 ? "border-t" : ""} border-b border-border-light/50 py-[18px] cursor-pointer`}
+          data-index={index}
+        >
+          <div class="faq-header flex items-center gap-3 select-none">
+            <span class={`faq-number font-body text-xs font-medium ${index === 0 ? "text-accent-dark" : "text-accent-dark/60"}`}>
+              {item.number}
+            </span>
+            <span class={`faq-question flex-1 font-body text-sm font-medium ${index === 0 ? "text-accent-dark" : "text-primary"}`}>
+              {item.question}
+            </span>
+            <div class={`faq-toggle flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-[1.5px] transition-colors ${
+              index === 0 ? "border-accent-dark bg-accent-dark" : "border-border-light"
+            }`}>
+              <span class="faq-icon font-body text-base leading-none transition-transform ${
+                index === 0 ? "text-primary" : "text-muted"
+              }">{index === 0 ? "\u2212" : "+"}</span>
+            </div>
+          </div>
+          <div class={`faq-answer overflow-hidden transition-all duration-300 ${
+            index === 0 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+          }`}>
+            <div class="pl-6 pt-3">
+              <p class="font-body text-[13px] text-muted-dark leading-relaxed">{item.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-6 flex w-full items-center justify-between rounded-xl bg-primary px-6 py-5 max-md:flex-col max-md:gap-3">
+      <div class="flex flex-col gap-1">
+        <span class="font-body text-sm font-medium text-accent-light">Ainda tem dúvidas?</span>
+        <span class="font-body text-xs text-accent-light/50">Nossa equipe responde rapidamente.</span>
+      </div>
+      <a
+        href={WHATSAPP.url}
+        class="inline-flex items-center gap-2 rounded-lg bg-accent-dark px-[18px] py-[9px] transition-opacity hover:opacity-90"
+      >
+        <span class="font-body text-[13px] font-medium text-primary">Falar pelo WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFAQ() {
+    const accordion = document.getElementById('faq-accordion')
+    if (!accordion) return
+
+    accordion.addEventListener('click', (event) => {
+      const item = (event.target as HTMLElement).closest('.faq-item')
+      if (!item) return
+
+      const index = parseInt(item.getAttribute('data-index') ?? '')
+      const answer = item.querySelector('.faq-answer') as HTMLElement
+      const toggle = item.querySelector('.faq-toggle') as HTMLElement
+      const icon = item.querySelector('.faq-icon') as HTMLElement
+      const number = item.querySelector('.faq-number') as HTMLElement
+      const question = item.querySelector('.faq-question') as HTMLElement
+
+      if (!answer || !toggle || !icon || !number || !question) return
+
+      const isOpen = answer.classList.contains('max-h-40')
+
+      document.querySelectorAll('.faq-item').forEach((el) => {
+        const ans = el.querySelector('.faq-answer') as HTMLElement
+        const tgl = el.querySelector('.faq-toggle') as HTMLElement
+        const ico = el.querySelector('.faq-icon') as HTMLElement
+        const num = el.querySelector('.faq-number') as HTMLElement
+        const qst = el.querySelector('.faq-question') as HTMLElement
+
+        if (ans) { ans.classList.remove('max-h-40', 'opacity-100'); ans.classList.add('max-h-0', 'opacity-0') }
+        if (tgl) { tgl.classList.remove('border-accent-dark', 'bg-accent-dark'); tgl.classList.add('border-border-light') }
+        if (ico) { ico.classList.remove('text-primary'); ico.classList.add('text-muted'); ico.innerHTML = '+' }
+        if (num) { num.classList.remove('text-accent-dark'); num.classList.add('text-accent-dark/60') }
+        if (qst) { qst.classList.remove('text-accent-dark'); qst.classList.add('text-primary') }
+      })
+
+      if (!isOpen) {
+        answer.classList.remove('max-h-0', 'opacity-0')
+        answer.classList.add('max-h-40', 'opacity-100')
+        toggle.classList.remove('border-border-light')
+        toggle.classList.add('border-accent-dark', 'bg-accent-dark')
+        icon.classList.remove('text-muted')
+        icon.classList.add('text-primary')
+        icon.innerHTML = '&minus;'
+        number.classList.remove('text-accent-dark/60')
+        number.classList.add('text-accent-dark')
+        question.classList.remove('text-primary')
+        question.classList.add('text-accent-dark')
+      }
+    })
+  }
+
+  initFAQ()
+</script>

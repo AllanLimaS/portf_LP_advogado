@@ -1,0 +1,19 @@
+---
+import { icons } from "lucide-react"
+
+export interface Props {
+  name: string
+  size?: "sm" | "md" | "lg"
+}
+
+const { name, size = "md" } = Astro.props
+
+const sizeMap = { sm: "w-9 h-9 p-1.5", md: "w-12 h-12 p-2.5", lg: "w-16 h-16 p-3" }
+const iconSizes = { sm: "w-3.5 h-3.5", md: "w-5 h-5", lg: "w-7 h-7" }
+
+const IconComponent = icons[name as keyof typeof icons]
+---
+
+<div class={`${sizeMap[size]} bg-accent-light/20 rounded-lg flex items-center justify-center`}>
+  {IconComponent && <IconComponent class={`${iconSizes[size]} text-accent-dark`} />}
+</div>

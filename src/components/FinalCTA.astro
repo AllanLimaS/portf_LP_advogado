@@ -1,0 +1,27 @@
+---
+import { WHATSAPP } from "../constants/site"
+---
+
+<section class="relative flex min-h-[673px] flex-col items-center justify-center gap-6 overflow-hidden">
+  <img src="/imgs/Martelinho.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" />
+  <div class="absolute inset-0 bg-primary/80"></div>
+
+  <div class="relative z-10 flex flex-col items-center gap-6 px-4 text-center">
+    <div class="flex flex-col items-center gap-1">
+      <span class="font-display text-[34px] font-bold text-accent-light leading-snug">Não deixe seus direitos</span>
+      <span class="font-display text-[62px] font-black text-accent-dark leading-tight">para depois</span>
+    </div>
+
+    <div class="flex flex-col items-center gap-1">
+      <p class="font-body text-base text-white">Fale agora com um especialista</p>
+      <p class="font-body text-base text-white">e descubra as melhores opções para o seu caso.</p>
+    </div>
+
+    <a
+      href={WHATSAPP.url}
+      class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-t from-[#72530a] to-accent px-9 py-4 font-body text-base font-semibold text-white transition-opacity hover:opacity-90"
+    >
+      Falar pelo WhatsApp
+    </a>
+  </div>
+</section>

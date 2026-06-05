@@ -195,7 +195,8 @@
                       "width": "fill_container",
                       "content": "Problemas no trabalho?",
                       "fontFamily": "DM Serif Display",
-                      "fontSize": 38
+                      "fontSize": 38,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "frame",
@@ -210,7 +211,8 @@
                           "fill": "#d7cbb2ff",
                           "content": "Defenda",
                           "fontFamily": "DM Serif Display",
-                          "fontSize": 38
+                          "fontSize": 38,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -219,7 +221,8 @@
                           "fill": "#C9A227",
                           "content": "seus direitos",
                           "fontFamily": "DM Serif Display",
-                          "fontSize": 38
+                          "fontSize": 38,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -3183,7 +3186,8 @@
                   "content": "para depois",
                   "textAlign": "center",
                   "fontFamily": "Aboreto",
-                  "fontSize": 62
+                  "fontSize": 62,
+                  "fontWeight": "normal"
                 }
               ]
             },

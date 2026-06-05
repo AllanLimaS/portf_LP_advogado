@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-serif: 'DM Serif Display', serif;
+  --font-display: 'Aboreto', serif;
+  --color-primary: #111827;
+  --color-accent: #c9a227;
+  --color-accent-light: #f1daaa;
+  --color-accent-dark: #cca733;
+  --color-bg: #ffffff;
+  --color-bg-light: #f8f9fa;
+  --color-dark-card: #1a2235;
+  --color-dark-footer: #0d1117;
+  --color-border-dark: #443605;
+  --color-border-light: #e5e7eb;
+  --color-muted: #9ca3af;
+  --color-muted-dark: #6b7280;
+}

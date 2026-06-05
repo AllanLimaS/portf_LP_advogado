@@ -1,0 +1,28 @@
+---
+import Icon from "./ui/Icon.astro"
+import { PAIN_POINTS, WHATSAPP } from "../constants/site"
+---
+
+<section class="flex min-h-screen flex-col items-center justify-center gap-10 bg-primary px-[100px] py-[60px] max-md:px-8">
+  <h2 class="text-center font-heading text-[30px] font-bold leading-tight bg-gradient-to-t from-white to-[#eccd8d] bg-clip-text text-transparent">
+    Você passou por alguma dessas situações?
+  </h2>
+
+  <div class="grid w-full grid-cols-3 gap-4 max-md:grid-cols-1">
+    {PAIN_POINTS.map((item) => (
+      <div class="relative flex flex-col items-center gap-4 rounded-xl px-8 py-7 bg-primary transition-colors hover:bg-white/5"
+        style="background: linear-gradient(#111827, #111827) padding-box, linear-gradient(180deg, #c9a227, #433505) border-box; border: 2px solid transparent;">
+        <Icon name={item.icon} size={40} class="text-accent" />
+        <span class="text-center font-body text-[17px] text-white">{item.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <a
+    href={WHATSAPP.url}
+    class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-t from-[#72530a] to-accent px-9 py-4 font-body text-base font-semibold text-white transition-opacity hover:opacity-90"
+  >
+    Quero Analisar Meu Caso
+    <span class="text-lg">&rarr;</span>
+  </a>
+</section>
