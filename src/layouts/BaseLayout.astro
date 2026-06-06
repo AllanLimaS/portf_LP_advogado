@@ -24,5 +24,79 @@ const { title, description } = Astro.props
   </head>
   <body class="font-body text-primary bg-bg antialiased">
     <slot />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+
+            if (el.classList.contains('reveal-stagger')) {
+              const children = el.querySelectorAll(':scope > .reveal');
+              children.forEach((child, i) => {
+                child.style.transitionDelay = `${i * 120}ms`;
+                child.classList.add('reveal-visible');
+                child.addEventListener('transitionend', () => {
+                  child.style.transitionDelay = '';
+                }, { once: true });
+              });
+            } else {
+              el.classList.add('reveal-visible');
+            }
+
+            observer.unobserve(el);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+        if (window.matchMedia('(hover: none)').matches) {
+          let currentSpotlight = null;
+
+          function updateSpotlight() {
+            const cards = document.querySelectorAll('[data-spotlight]');
+            const vh = window.innerHeight / 2;
+            let bestCard = null;
+            let bestDist = Infinity;
+
+            cards.forEach(card => {
+              const rect = card.getBoundingClientRect();
+              const dist = Math.abs(rect.top + rect.height / 2 - vh);
+              if (dist < bestDist) { bestDist = dist; bestCard = card; }
+            });
+
+            if (currentSpotlight && bestCard !== currentSpotlight) {
+              const cr = currentSpotlight.getBoundingClientRect();
+              const cd = Math.abs(cr.top + cr.height / 2 - vh);
+              if (bestDist + 50 > cd) { bestCard = currentSpotlight; }
+            }
+
+            if (bestCard !== currentSpotlight) {
+              if (currentSpotlight) {
+                currentSpotlight.classList.remove('card-spotlight');
+                const ov = currentSpotlight.querySelector('.card-overlay');
+                if (ov) { ov.classList.remove('opacity-100'); ov.classList.add('opacity-0'); }
+              }
+              currentSpotlight = bestCard;
+              if (bestCard) {
+                bestCard.classList.add('card-spotlight');
+                const ov = bestCard.querySelector('.card-overlay');
+                if (ov) { ov.classList.add('opacity-100'); ov.classList.remove('opacity-0'); }
+              }
+            }
+          }
+
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              requestAnimationFrame(() => { updateSpotlight(); ticking = false; });
+              ticking = true;
+            }
+          }, { passive: true });
+
+          updateSpotlight();
+        }
+      });
+    </script>
   </body>
 </html>

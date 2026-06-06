@@ -5,16 +5,16 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
 <section id="faq" class="w-full bg-bg">
   <div class="mx-auto max-w-[1200px] flex flex-col items-center px-8 py-12">
     <div class="flex w-full gap-8 items-end">
-      <div class="flex-1 flex flex-col">
+      <div class="reveal flex-1 flex flex-col" data-reveal>
         <h3 class="font-heading text-[30px] font-medium text-primary leading-tight">Perguntas</h3>
         <h3 class="font-heading text-[30px] font-medium text-accent-dark leading-tight">Frequentes</h3>
       </div>
     </div>
 
-    <div class="flex w-full flex-col" id="faq-accordion">
+    <div class="reveal-stagger flex w-full flex-col" id="faq-accordion" data-reveal>
       {FAQ_ITEMS.map((item, index) => (
         <div
-          class={`faq-item ${index === 0 ? "border-t" : ""} border-b border-border-light/50 py-[18px] cursor-pointer`}
+          class={`reveal faq-item ${index === 0 ? "border-t" : ""} border-b border-border-light/50 py-[18px] cursor-pointer`}
           data-index={index}
         >
           <div class="faq-header flex items-center gap-3 select-none">
@@ -43,14 +43,14 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
       ))}
     </div>
 
-    <div class="mt-6 flex w-full items-center justify-between rounded-xl bg-primary px-6 py-5 max-md:flex-col max-md:gap-3">
+    <div class="reveal mt-6 flex w-full items-center justify-between rounded-xl bg-primary px-6 py-5 max-md:flex-col max-md:items-start max-md:gap-3" data-reveal>
       <div class="flex flex-col gap-1">
         <span class="font-body text-sm font-medium text-accent-light">Ainda tem dúvidas?</span>
         <span class="font-body text-xs text-accent-light/50">Nossa equipe responde rapidamente.</span>
       </div>
       <a
-        href={WHATSAPP.url}
-        class="inline-flex items-center gap-2 rounded-lg bg-accent-dark px-[18px] py-[9px] transition-opacity hover:opacity-90"
+        href="#"
+        class="inline-flex items-center gap-2 rounded-lg bg-accent-dark px-[18px] py-[9px] transition-all duration-300 hover:opacity-90 hover:scale-105 hover:shadow-[0_0_15px_rgba(204,167,51,0.3)] max-md:self-center"
       >
         <span class="font-body text-[13px] font-medium text-primary">Falar pelo WhatsApp</span>
       </a>

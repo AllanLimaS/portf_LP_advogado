@@ -5,17 +5,17 @@ import { DIFFERENTIATORS } from "../constants/site"
 
 <section class="w-full bg-bg" id="diferenciais">
   <div class="mx-auto max-w-[1200px] flex flex-col items-center gap-6 px-8 py-12">
-    <div class="flex items-center gap-3">
+    <div class="reveal flex items-center gap-3" data-reveal>
       <span class="block h-0.5 w-8 bg-accent-dark"></span>
-      <span class="font-body text-xs font-medium text-accent-dark tracking-[1.2px] uppercase">Nossos Diferencias</span>
+      <span class="font-body text-xs font-medium text-accent-dark tracking-[1.2px] uppercase">Nossos Diferenciais</span>
       <span class="block h-0.5 w-8 bg-accent-dark"></span>
     </div>
 
-    <h3 class="text-center font-heading text-2xl font-medium text-primary">Por que escolher nosso escritório?</h3>
+    <h3 class="reveal text-center font-heading text-2xl font-medium text-primary" data-reveal>Por que escolher nosso escritório?</h3>
 
-    <div class="grid w-full grid-cols-3 gap-4 max-md:grid-cols-1">
+    <div class="reveal-stagger grid w-full grid-cols-3 gap-4 max-md:grid-cols-1" data-reveal>
       {DIFFERENTIATORS.map((item) => (
-        <div class="flex flex-col items-center gap-3 rounded-xl border border-border-light/50 bg-[#fafaf9] p-5">
+        <div class="reveal flex flex-col items-center gap-3 rounded-xl border border-border-light/50 bg-[#fafaf9] p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:bg-[#f5efe0]" data-spotlight>
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f3ead8]">
             <Icon name={item.icon} size={18} class="text-accent-dark" />
           </div>

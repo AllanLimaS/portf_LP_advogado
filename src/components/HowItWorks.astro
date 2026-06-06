@@ -10,28 +10,29 @@ import { STEPS } from "../constants/site"
   </div>
 
   <div class="relative z-10 flex w-full max-w-[1200px] items-start gap-12 max-md:flex-col">
-    <div class="flex flex-1 flex-col">
+    <div class="reveal flex flex-1 flex-col" data-reveal>
       <span class="font-heading text-[30px] font-bold text-accent-light leading-snug">Sua Jornada de Defesa,</span>
       <span class="font-heading text-[28px] font-bold text-accent-dark uppercase">COMO FUNCIONA ?</span>
     </div>
-    <p class="flex-1 font-body text-sm text-accent-light/70">
+    <p class="reveal flex-1 font-body text-sm text-accent-light/70" data-reveal>
       Desde o primeiro contato, nos dedicamos a esclarecer e simplificar o processo criminal para você, garantindo a melhor estratégia de defesa e representação em todas as fases legais.
     </p>
   </div>
 
-  <div class="relative z-10 flex w-full max-w-[1200px] items-center max-md:flex-col">
+  <div class="reveal-stagger relative z-10 flex w-full max-w-[1200px] items-center max-md:flex-col" data-reveal>
     {STEPS.map((step, i) => (
       <>
-        <div class="flex flex-1 flex-col items-center justify-center gap-3 rounded-[10px] border border-border-dark bg-dark-card px-6 py-7 h-[270px] max-md:w-full min-w-0 max-w-[300px]">
-          <span class="font-heading text-[40px] font-bold text-accent/50">{step.number}</span>
-          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-accent-light">
+        <div class="reveal group flex flex-1 flex-col items-center justify-center gap-3 rounded-[10px] border border-border-dark bg-dark-card px-6 py-7 h-[270px] max-md:w-full min-w-0 max-w-[300px] transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-accent/20" data-spotlight>
+          <div class="card-overlay pointer-events-none absolute inset-0 rounded-[10px] bg-accent/4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          <span class="relative z-10 font-heading text-[40px] font-bold text-accent/50">{step.number}</span>
+          <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-lg bg-accent-light">
             <Icon name={step.icon} size={24} class="text-border-dark" />
           </div>
-          <span class="text-center font-body text-[15px] font-semibold text-accent-light">{step.title}</span>
-          <span class="text-center font-body text-[13px] text-accent-light/70">{step.description}</span>
+          <span class="relative z-10 text-center font-body text-[15px] font-semibold text-accent-light">{step.title}</span>
+          <span class="relative z-10 text-center font-body text-[13px] text-accent-light/70">{step.description}</span>
         </div>
         {i < STEPS.length - 1 && (
-          <div class="flex w-5 items-center justify-center shrink-0 max-md:w-auto max-md:py-0">
+          <div class="reveal flex w-5 items-center justify-center shrink-0 max-md:w-auto max-md:py-0">
             <span class="block h-0.5 w-5 bg-border-dark max-md:hidden"></span>
             <span class="hidden w-0.5 h-6 bg-border-dark max-md:block"></span>
           </div>
