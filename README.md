@@ -1,6 +1,6 @@
 # Ricardo Lauer Advocacia
 
-Landing page para escritório de advocacia trabalhista, construída com Astro e Tailwind CSS.
+Landing page para escritório de advocacia trabalhista feita apenas para portfólio, construída com Astro e Tailwind CSS.
 
 ## Stack
 
