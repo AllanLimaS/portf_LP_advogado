@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css"
+import advogadoOgImg from "../assets/images/advogado.png"
 
 export interface Props {
   title: string
@@ -10,19 +11,49 @@ const { title, description } = Astro.props
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth" style="scroll-padding-top: 56px;">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL(advogadoOgImg.src, Astro.site).href} />
+    <meta property="og:url" content="https://ricardolauer.adv.br" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={new URL(advogadoOgImg.src, Astro.site).href} />
+    <link rel="canonical" href="https://ricardolauer.adv.br" />
+    <meta name="theme-color" content="#111827" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Attorney",
+        "name": "Ricardo Lauer Advocacia",
+        "image": "/imgs/advogado.png",
+        "url": "https://ricardolauer.adv.br",
+        "telephone": "+5511999996868",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Paulista, 1000",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "description": "Especialista em Direito Trabalhista. Atuação focada na defesa dos direitos dos trabalhadores.",
+        "knowsAbout": "Direito Trabalhista",
+        "areaServed": "Brasil"
+      }
+    </script>
   </head>
   <body class="font-body text-primary bg-bg antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-accent-dark focus:text-primary focus:px-4 focus:py-2 focus:rounded">Pular para o conteúdo principal</a>
     <slot />
     <script>
       document.addEventListener('DOMContentLoaded', () => {

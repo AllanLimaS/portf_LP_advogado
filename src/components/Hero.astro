@@ -1,116 +1,154 @@
 ---
-import { SITE, WHATSAPP, METRICS } from "../constants/site"
+import { Image } from 'astro:assets'
+import { SITE, METRICS } from "../constants/site"
+import fundoHeroImg from "../assets/images/fundo-hero.jpg"
+import advogadoImg from "../assets/images/advogado.png"
 
 const { fullName, specialty } = SITE
 ---
 
-<section class="relative flex flex-col overflow-hidden bg-primary max-md:hidden" style="flex: 1;" aria-label="Apresentação do advogado">
-  <img src="/imgs/fundo hero.jpg" alt="" class="absolute inset-0 h-full w-full object-cover blur-sm" />
-  <div class="absolute inset-0 bg-primary/40"></div>
+<section
+  class="relative flex flex-col overflow-hidden bg-primary max-md:min-h-[100svh] md:h-full"
+  aria-label="Apresentação do advogado"
+>
+  <Image src={fundoHeroImg} alt="" class="absolute inset-0 h-full w-full object-cover blur-sm" />
+  <div class="absolute inset-0 bg-primary/40 max-md:bg-primary/50"></div>
 
-  <div class="absolute left-0 top-60 w-[900px] h-[700px] pointer-events-none blur-2xl"
-    style="background: radial-gradient(ellipse 50% 40% at 30% 40%, rgba(17,24,39,1) 0%, rgba(17,24,39,0.94) 20%, rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.1) 80%, rgba(17,24,39,0) 100%);">
-  </div>
+  <div
+    class="absolute left-0 top-60 w-[900px] h-[700px] pointer-events-none blur-2xl max-md:hidden"
+    style="background: radial-gradient(ellipse 50% 40% at 30% 40%, rgba(17,24,39,1) 0%, rgba(17,24,39,0.94) 20%, rgba(17,24,39,0.6) 50%, rgba(17,24,39,0.1) 80%, rgba(17,24,39,0) 100%);"
+  ></div>
 
-  <div class="absolute right-0 -top-24 w-[900px] h-[900px] pointer-events-none blur-2xl"
-    style="background: radial-gradient(ellipse 40% 50% at 70% 30%, rgba(160,164,168,0.15) 0%, rgba(160,164,168,0.05) 40%, rgba(17,24,39,0) 100%);">
-  </div>
+  <div
+    class="absolute right-0 -top-24 w-[900px] h-[900px] pointer-events-none blur-2xl max-md:hidden"
+    style="background: radial-gradient(ellipse 40% 50% at 70% 30%, rgba(160,164,168,0.15) 0%, rgba(160,164,168,0.05) 40%, rgba(17,24,39,0) 100%);"
+  ></div>
 
-  <img src="/imgs/advogado.png" alt={fullName} class="absolute right-0 bottom-0 w-[55%] h-full object-cover object-[70%_bottom] z-0" />
+  <Image src={advogadoImg} alt={fullName} class="absolute bottom-0 right-0 h-full object-cover z-0 max-md:inset-0 max-md:w-full max-md:object-center md:w-[55%] md:object-[70%_bottom]" />
 
-  <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(13,17,23,0.15) 20%, rgba(13,17,23,0.3) 40%, rgba(13,17,23,0.65) 60%, rgba(13,17,23,0.85) 75%, rgba(13,17,23,0.98) 100%);"></div>
+  <div
+    class="absolute inset-0 z-[1] max-md:hidden"
+    style="background: linear-gradient(180deg, rgba(13,17,23,0.15) 20%, rgba(13,17,23,0.3) 40%, rgba(13,17,23,0.65) 60%, rgba(13,17,23,0.85) 75%, rgba(13,17,23,0.98) 100%);"
+  ></div>
+  <div
+    class="absolute inset-0 z-[1] md:hidden"
+    style="background: linear-gradient(180deg, rgba(13,17,23,0.3) 0%, rgba(13,17,23,0.1) 30%, rgba(13,17,23,0.75) 65%, rgba(13,17,23,0.98) 100%);"
+  ></div>
 
-  <div class="relative z-10 flex flex-1 items-center mx-auto w-full max-w-[1200px] px-[60px]">
-    <div class="flex flex-1 flex-col gap-6">
-      <div class="inline-flex flex-col items-stretch max-w-[500px]">
-        <h2 class="font-display text-[28px] sm:text-[36px] lg:text-[42px] font-black text-white leading-tight whitespace-nowrap w-full" style="text-align-last: justify; text-justify: inter-character;">{fullName}</h2>
-        <p class="font-body text-[16px] sm:text-[20px] lg:text-[26px] font-bold text-accent uppercase mt-1 whitespace-nowrap w-full" style="text-align-last: justify; text-justify: inter-character;">{specialty}</p>
-      </div>
-
-      <div>
-        <p class="font-cormorant text-[24px] sm:text-[34px] lg:text-[38px] text-white/90 leading-tight font-bold">Problemas no trabalho?</p>
-        <p class="font-cormorant text-[24px] sm:text-[34px] lg:text-[38px] leading-tight">
-          <span class="text-white/90 font-bold">Defenda </span>
-          <span class="text-accent font-bold italic tracking-wider text-[28px] sm:text-[42px] lg:text-[50px]">seus direitos</span>
+  <div
+    class="relative z-10 flex flex-col mx-auto w-full max-w-[1200px] px-6 md:px-10 lg:px-16 max-md:mt-auto max-md:pb-6 max-md:pt-32 md:flex-1 md:flex-row md:items-center"
+  >
+    <div class="flex flex-1 flex-col gap-4 md:gap-6">
+      <div class="inline-flex flex-col items-stretch md:max-w-[500px]">
+        <h1
+          class="font-display text-white font-black leading-tight whitespace-nowrap w-full max-md:font-body max-md:text-base max-md:font-normal max-md:uppercase max-md:tracking-[0.1em] md:text-[28px] lg:text-[42px]"
+        >
+          {fullName}
+        </h1>
+        <p
+          class="font-bold uppercase mt-1 whitespace-nowrap w-full max-md:text-sm max-md:text-accent-dark max-md:tracking-[0.14em] max-md:-mt-1.5 max-md:font-medium md:text-[16px] lg:text-[26px] md:text-accent"
+        >
+          {specialty}
         </p>
       </div>
 
-      <span class="block w-10 h-0.5 bg-accent-dark mt-1"></span>
+      <div class="max-md:hidden">
+        <p class="font-cormorant text-[24px] lg:text-[38px] text-white/90 leading-tight font-bold">
+          Problemas no trabalho?
+        </p>
+        <p class="font-cormorant text-[24px] lg:text-[38px] leading-tight">
+          <span class="text-white/90 font-bold">Defenda </span>
+          <span class="text-accent font-bold italic tracking-wider text-[28px] lg:text-[50px]"
+            >seus direitos</span
+          >
+        </p>
+      </div>
+
+      <h2
+        class="md:hidden font-cormorant text-[36px] font-semibold leading-[1.1]"
+      >
+        <span class="text-white">Defenda </span>
+        <span class="text-accent-dark italic">seus direitos</span>
+        <span class="text-white"> agora.</span>
+      </h2>
+
+      <span class="block w-10 h-0.5 bg-accent-dark md:mt-1"></span>
+
+      <p class="md:hidden font-body text-xs text-white/70 leading-[1.65]">
+        Problemas no trabalho? Fale com um especialista e descubra suas opções.
+      </p>
 
       <div class="flex flex-col items-start gap-2">
-        <div class="flex flex-col items-center gap-2">
-          <a href="#" class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-t from-[#72530a] to-accent px-9 py-4 font-body text-base font-semibold text-white transition-all duration-300 hover:opacity-90 hover:scale-105 hover:shadow-[0_0_20px_rgba(204,167,51,0.3)]">
+        <div class="flex flex-col items-center gap-2 max-md:w-full">
+          <a
+            href="#"
+            class="inline-flex items-center justify-center gap-2 rounded-lg btn-gradient-primary px-9 py-4 font-body text-base font-semibold text-white transition-all duration-300 hover:opacity-90 hover:scale-105 hover:btn-glow max-md:w-full max-md:py-[13px] max-md:text-[13px] max-md:bg-accent-dark"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="md:hidden"
+              ><path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path></svg
+            >
             Solicitar Atendimento
-            <span class="text-lg" aria-hidden="true">&rarr;</span>
+            <span class="text-lg max-md:hidden" aria-hidden="true">&rarr;</span>
           </a>
-          <div class="flex items-center gap-1.5 text-muted">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <span class="font-body text-xs">Atendimento em até 24 horas</span>
+
+          <div
+            class="flex items-center gap-1.5 max-md:text-white/50 md:text-muted"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              ><circle cx="12" cy="12" r="10"></circle
+              ><polyline points="12 6 12 12 16 14"></polyline></svg
+            >
+            <span class="font-body text-xs max-md:text-[11px]"
+              >Atendimento em até 24 horas</span
+            >
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="relative z-10 mx-auto w-full max-w-[1200px] px-[60px] pb-8 pt-4">
-    <div class="grid grid-cols-3 gap-4">
-      {METRICS.map((metric) => (
-        <div class="flex flex-col items-center gap-1 rounded-lg py-3 px-2 text-center" style="background: rgba(255,255,255,0.05); border: 0.5px solid rgba(204,167,51,0.2);">
-          <span class="font-heading text-[32px] font-bold text-accent-dark">{metric.value}</span>
-          <span class="font-body text-xs text-accent-light/50">{metric.label}</span>
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1200px] px-6 md:px-10 lg:px-16 pb-8 pt-4 max-md:px-5 max-md:pb-6"
+  >
+    <div class="grid grid-cols-3 gap-4 max-md:flex">
+      {METRICS.map((metric, i) => (
+        <div
+          class="flex flex-col items-center gap-0.5 rounded-lg py-3 px-2 text-center max-md:flex-1 max-md:py-2.5 max-md:px-1"
+          style="background: rgba(255,255,255,0.05); border: 0.5px solid rgba(204,167,51,0.2);"
+        >
+          <span
+            class="font-heading text-[32px] font-bold text-accent-dark max-md:font-body max-md:font-semibold max-md:text-base"
+          >
+            {metric.value}
+          </span>
+          <span class="font-body text-xs text-accent-light/60 max-md:text-[9px] max-md:uppercase"
+            >{metric.label}</span
+          >
         </div>
       ))}
-    </div>
-  </div>
-</section>
-
-<section class="relative flex flex-col md:hidden" style="width: 100%; min-height: 100svh;">
-  <img src="/imgs/fundo hero.jpg" alt="" class="absolute inset-0 h-full w-full object-cover object-center blur-sm" />
-  <div class="absolute inset-0 bg-primary/50"></div>
-  <img src="/imgs/advogado.png" alt={fullName} class="absolute inset-0 h-full w-full object-cover object-center" />
-  <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(13,17,23,0.3) 0%, rgba(13,17,23,0.1) 30%, rgba(13,17,23,0.75) 65%, rgba(13,17,23,0.98) 100%);"></div>
-
-  <div class="relative z-10 flex flex-col gap-4 mt-auto px-5 pb-6 pt-32">
-    <div>
-      <p class="font-body text-base uppercase tracking-[0.1em] text-white">{fullName}</p>
-      <p class="font-body text-sm uppercase tracking-[0.14em] text-accent-dark font-medium -mt-1.5">{specialty}</p>
-    </div>
-
-    <h2 class="font-cormorant text-[36px] font-semibold leading-[1.1]">
-      <span class="text-white">Defenda </span>
-      <span class="text-accent-dark italic">seus direitos</span>
-      <span class="text-white"> agora.</span>
-    </h2>
-
-    <span class="block w-10 h-0.5 bg-accent-dark"></span>
-
-    <p class="font-body text-xs text-white/55 leading-[1.65]">
-      Problemas no trabalho? Fale com um especialista e descubra suas opções.
-    </p>
-
-    <div class="flex gap-2">
-      <div class="flex flex-1 flex-col items-center gap-0.5 rounded-lg py-2.5 px-1 text-center" style="background: rgba(255,255,255,0.05); border: 0.5px solid rgba(204,167,51,0.2);">
-        <span class="font-body font-semibold text-accent-dark">10+</span>
-        <span class="font-body text-[9px] uppercase text-accent-light/40">Anos de exp.</span>
-      </div>
-      <div class="flex flex-1 flex-col items-center gap-0.5 rounded-lg py-2.5 px-1 text-center" style="background: rgba(255,255,255,0.05); border: 0.5px solid rgba(204,167,51,0.2);">
-        <span class="font-body font-semibold text-accent-dark">500+</span>
-        <span class="font-body text-[9px] uppercase text-accent-light/40">Casos</span>
-      </div>
-      <div class="flex flex-1 flex-col items-center gap-0.5 rounded-lg py-2.5 px-1 text-center" style="background: rgba(255,255,255,0.05); border: 0.5px solid rgba(204,167,51,0.2);">
-        <span class="font-body text-[13px] font-semibold text-accent-dark leading-tight">Presencial<br/>ou Remoto</span>
-        <span class="font-body text-[9px] uppercase text-accent-light/40">Atendimento</span>
-      </div>
-    </div>
-
-    <a href="#" class="flex w-full items-center justify-center gap-2 rounded-lg bg-accent-dark py-[13px] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(204,167,51,0.3)]">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-      <span class="font-body text-[13px] font-semibold text-primary">Solicitar Atendimento</span>
-    </a>
-
-    <div class="flex items-center justify-center gap-1.5 text-white/30">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      <span class="font-body text-[11px]">Atendimento em até 24 horas</span>
     </div>
   </div>
 </section>

@@ -1,0 +1,68 @@
+---
+import { SITE, NAV_LINKS } from "../constants/site"
+
+const { name } = SITE
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-primary/60 backdrop-blur-md">
+  <div class="mx-auto max-w-[1200px] flex items-center justify-between px-8 h-14">
+    <a href="#" class="flex items-end gap-1">
+      <span class="font-heading text-base font-medium text-accent-light">{name}</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6" id="desktop-nav">
+      {NAV_LINKS.map((link) => (
+        <a href={link.href} class="font-body text-[13px] text-white/60 hover:text-accent-dark transition-colors">{link.label}</a>
+      ))}
+    </nav>
+
+    <button class="md:hidden flex items-center justify-center h-8 w-8 text-white/60 hover:text-accent-dark transition-colors" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="menu-icon-open"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="menu-icon-close" class="hidden"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  <nav class="hidden md:hidden flex flex-col bg-primary/60 backdrop-blur-md px-8 py-4" id="mobile-nav">
+    {NAV_LINKS.map((link) => (
+      <a href={link.href} class="block font-body text-sm text-white/60 hover:text-accent-dark transition-colors py-2.5 border-b border-white/5 last:border-b-0">{link.label}</a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  function initHeader() {
+    const toggle = document.getElementById('menu-toggle')
+    const mobileNav = document.getElementById('mobile-nav')
+    const openIcon = document.getElementById('menu-icon-open')
+    const closeIcon = document.getElementById('menu-icon-close')
+
+    if (!toggle || !mobileNav || !openIcon || !closeIcon) return
+
+    toggle.addEventListener('click', () => {
+      const isOpen = !mobileNav.classList.contains('hidden')
+      mobileNav.classList.toggle('hidden')
+      openIcon.classList.toggle('hidden')
+      closeIcon.classList.toggle('hidden')
+      toggle.setAttribute('aria-expanded', String(!isOpen))
+      toggle.setAttribute('aria-label', isOpen ? 'Abrir menu' : 'Fechar menu')
+    })
+
+    document.querySelectorAll('#mobile-nav a, #desktop-nav a').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = (link as HTMLAnchorElement).getAttribute('href')
+        if (href && href.startsWith('#')) {
+          e.preventDefault()
+          const target = document.querySelector(href)
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+          if (!mobileNav.classList.contains('hidden')) {
+            toggle.click()
+          }
+        }
+      })
+    })
+  }
+
+  initHeader()
+</script>
