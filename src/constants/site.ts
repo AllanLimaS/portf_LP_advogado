@@ -1,12 +1,12 @@
 export const SITE = {
-  name: "Ricardo Almeida",
-  fullName: "Dr. Ricardo Almeida",
+  name: "Ricardo Lauer",
+  fullName: "Dr. Ricardo Lauer",
   specialty: "Advocacia Trabalhista",
   description:
     "Atuação focada na defesa dos direitos dos trabalhadores, oferecendo atendimento personalizado e acompanhamento durante todas as etapas do processo.",
   tagline: "Advocacia trabalhista com dedicação, transparência e estratégia em cada etapa.",
   oab: "OAB/SP 00000",
-  copyright: "© 2026 Ricardo Almeida Advocacia. Todos os direitos reservados.",
+  copyright: "© 2026 Ricardo Lauer Advocacia. Todos os direitos reservados.",
 }
 
 export const WHATSAPP = {
@@ -19,7 +19,7 @@ export const WHATSAPP = {
 
 export const CONTACT = {
   phone: "(11) 99999-6868",
-  email: "contato@ricardoalmeida.adv.br",
+  email: "contato@ricardolauer.adv.br",
   address: "Av. Paulista, 1000 — São Paulo, SP",
 }
 

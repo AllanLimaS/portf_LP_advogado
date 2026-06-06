@@ -5,7 +5,7 @@ import Icon from "./ui/Icon.astro"
 const { fullName, description } = SITE
 ---
 
-<section id="sobre" class="w-full bg-bg">
+<section id="sobre" class="w-full bg-bg" aria-label="Sobre o advogado">
   <div class="mx-auto max-w-[1200px] flex items-center gap-10 px-10 py-12 max-md:flex-col max-md:px-5">
     <div class="reveal h-[382px] w-[387px] shrink-0 overflow-hidden rounded-xl border-2 border-accent-dark shadow-[0_8px_24px_-4px_rgba(0,0,0,0.7)] max-md:w-full max-md:h-auto max-md:aspect-[1/1]" data-reveal>
       <img src="/imgs/Advogado com fundo.jpg" alt={fullName} class="h-full w-full object-cover" />

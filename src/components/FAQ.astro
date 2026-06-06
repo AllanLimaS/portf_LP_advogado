@@ -2,7 +2,7 @@
 import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
 ---
 
-<section id="faq" class="w-full bg-bg">
+<section id="faq" class="w-full bg-bg" aria-label="Perguntas Frequentes">
   <div class="mx-auto max-w-[1200px] flex flex-col items-center px-8 py-12">
     <div class="flex w-full gap-8 items-end">
       <div class="reveal flex-1 flex flex-col" data-reveal>
@@ -11,13 +11,14 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
       </div>
     </div>
 
-    <div class="reveal-stagger flex w-full flex-col" id="faq-accordion" data-reveal>
+    <div class="reveal-stagger flex w-full flex-col" id="faq-accordion" data-reveal role="list">
       {FAQ_ITEMS.map((item, index) => (
         <div
           class={`reveal faq-item ${index === 0 ? "border-t" : ""} border-b border-border-light/50 py-[18px] cursor-pointer`}
           data-index={index}
+          role="listitem"
         >
-          <div class="faq-header flex items-center gap-3 select-none">
+          <div class="faq-header flex items-center gap-3 select-none" role="button" tabindex="0" aria-expanded={index === 0 ? "true" : "false"} aria-controls={`faq-answer-${index}`} id={`faq-question-${index}`}>
             <span class={`faq-number font-body text-xs font-medium ${index === 0 ? "text-accent-dark" : "text-accent-dark/60"}`}>
               {item.number}
             </span>
@@ -34,7 +35,7 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
           </div>
           <div class={`faq-answer overflow-hidden transition-all duration-300 ${
             index === 0 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-          }`}>
+          }`} role="region" aria-labelledby={`faq-question-${index}`} id={`faq-answer-${index}`}>
             <div class="pl-6 pt-3">
               <p class="font-body text-[13px] text-muted-dark leading-relaxed">{item.answer}</p>
             </div>
@@ -63,18 +64,16 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
     const accordion = document.getElementById('faq-accordion')
     if (!accordion) return
 
-    accordion.addEventListener('click', (event) => {
-      const item = (event.target as HTMLElement).closest('.faq-item')
-      if (!item) return
-
+    function toggleItem(item: HTMLElement) {
       const index = parseInt(item.getAttribute('data-index') ?? '')
       const answer = item.querySelector('.faq-answer') as HTMLElement
       const toggle = item.querySelector('.faq-toggle') as HTMLElement
       const icon = item.querySelector('.faq-icon') as HTMLElement
       const number = item.querySelector('.faq-number') as HTMLElement
       const question = item.querySelector('.faq-question') as HTMLElement
+      const header = item.querySelector('.faq-header') as HTMLElement
 
-      if (!answer || !toggle || !icon || !number || !question) return
+      if (!answer || !toggle || !icon || !number || !question || !header) return
 
       const isOpen = answer.classList.contains('max-h-40')
 
@@ -84,12 +83,14 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
         const ico = el.querySelector('.faq-icon') as HTMLElement
         const num = el.querySelector('.faq-number') as HTMLElement
         const qst = el.querySelector('.faq-question') as HTMLElement
+        const hdr = el.querySelector('.faq-header') as HTMLElement
 
         if (ans) { ans.classList.remove('max-h-40', 'opacity-100'); ans.classList.add('max-h-0', 'opacity-0') }
         if (tgl) { tgl.classList.remove('border-accent-dark', 'bg-accent-dark'); tgl.classList.add('border-border-light') }
         if (ico) { ico.classList.remove('text-primary'); ico.classList.add('text-muted'); ico.innerHTML = '+' }
         if (num) { num.classList.remove('text-accent-dark'); num.classList.add('text-accent-dark/60') }
         if (qst) { qst.classList.remove('text-accent-dark'); qst.classList.add('text-primary') }
+        if (hdr) { hdr.setAttribute('aria-expanded', 'false') }
       })
 
       if (!isOpen) {
@@ -104,6 +105,22 @@ import { FAQ_ITEMS, WHATSAPP } from "../constants/site"
         number.classList.add('text-accent-dark')
         question.classList.remove('text-primary')
         question.classList.add('text-accent-dark')
+        header.setAttribute('aria-expanded', 'true')
+      }
+    }
+
+    accordion.addEventListener('click', (event) => {
+      const item = (event.target as HTMLElement).closest('.faq-item')
+      if (item) toggleItem(item)
+    })
+
+    accordion.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        const item = (event.target as HTMLElement).closest('.faq-item')
+        if (item) {
+          event.preventDefault()
+          toggleItem(item)
+        }
       }
     })
   }
