@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Hero from "../components/Hero.astro"
-import Metrics from "../components/Metrics.astro"
 import PainPoints from "../components/PainPoints.astro"
 import HowItWorks from "../components/HowItWorks.astro"
 import AboutLawyer from "../components/AboutLawyer.astro"
@@ -17,9 +16,8 @@ const description = "Atendimento especializado em Direito Trabalhista. Receba um
 
 <BaseLayout {title} {description}>
   <main class="flex flex-col">
-    <div class="flex h-screen flex-col">
+    <div class="flex max-md:flex-col md:h-screen md:flex-col">
       <Hero />
-      <Metrics />
     </div>
     <PainPoints />
     <HowItWorks />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -6,6 +6,7 @@
   --font-body: 'Inter', sans-serif;
   --font-serif: 'DM Serif Display', serif;
   --font-display: 'Aboreto', serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
   --color-primary: #111827;
   --color-accent: #c9a227;
   --color-accent-light: #f1daaa;
